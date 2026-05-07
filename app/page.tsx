@@ -1,6 +1,7 @@
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const asset = (path: string) => `${basePath}${path}`;
+const siteHref = (path: string) => `${basePath}/${path}`.replace(/\/{2,}/g, "/");
 
 const menu = [
   ["Home", "index.html"],
@@ -160,12 +161,12 @@ export function ModernizedPage({
           <a href="mailto:info@infogestsur.es">info@infogestsur.es</a>
         </div>
         <div className="nav-wrap">
-          <a className="brand" href="index.html" aria-label="IGS Asesoría Gestoría en Móstoles Madrid">
+          <a className="brand" href={siteHref("index.html")} aria-label="IGS Asesoría Gestoría en Móstoles Madrid">
             <img src={asset("/assets/logo-igs.png")} alt="IGS Asesoría Gestoría en Móstoles Madrid" />
           </a>
           <nav aria-label="Navegación principal">
             {menu.map(([label, href]) => (
-              <a key={label} href={href}>
+              <a key={label} href={siteHref(href)}>
                 {label}
               </a>
             ))}
@@ -203,7 +204,7 @@ export function ModernizedPage({
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="tel:+34916130029">Llamar ahora</a>
-              <a className="button button-secondary" href="contactar-asesoria-mostoles/index.html">Solicitar presupuesto</a>
+              <a className="button button-secondary" href={siteHref("contactar-asesoria-mostoles/index.html")}>Solicitar presupuesto</a>
             </div>
           </div>
         </section>
@@ -335,10 +336,10 @@ export function ModernizedPage({
 
       <footer>
         <nav aria-label="Legal">
-          <a href="politica-de-cookies/index.html">Política de Cookies</a>
-          <a href="aviso-legal/index.html">Aviso Legal</a>
-          <a href="politica-privacidad/index.html">Política de privacidad</a>
-          <a href="gestoria-abierta-los-sabados-en-madrid/index.html">Gestoría abierta los sábados</a>
+          <a href={siteHref("politica-de-cookies/index.html")}>Política de Cookies</a>
+          <a href={siteHref("aviso-legal/index.html")}>Aviso Legal</a>
+          <a href={siteHref("politica-privacidad/index.html")}>Política de privacidad</a>
+          <a href={siteHref("gestoria-abierta-los-sabados-en-madrid/index.html")}>Gestoría abierta los sábados</a>
         </nav>
         <p>© 2024 INFO GEST SUR GESTIÓN S.L. - Todos los derechos reservados.</p>
       </footer>
