@@ -16,6 +16,7 @@ const menu = [
 export const routePages = [
   { slug: "gestoria-en-mostoles", title: "Trámites DGT" },
   { slug: "gestoria-licencias-de-apertura-madrid", title: "Gestoría licencias de apertura" },
+  { slug: "gestoria-licencias-de-apertura-madrid/nosotros", title: "Quienes Somos" },
   { slug: "nosotros", title: "Quienes Somos" },
   { slug: "gestoria-abierta-sabado-madrid-2", title: "Gestoría abierta sábado" },
   { slug: "asesoria-empresas-autonomos", title: "Asesoría Empresas y Autónomos" },
