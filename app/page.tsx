@@ -12,6 +12,32 @@ const menu = [
   ["Contacto", "contactar-asesoria-mostoles/index.html"],
 ];
 
+export const routePages = [
+  { slug: "gestoria-en-mostoles", title: "Trámites DGT" },
+  { slug: "gestoria-licencias-de-apertura-madrid", title: "Gestoría licencias de apertura" },
+  { slug: "nosotros", title: "Quienes Somos" },
+  { slug: "gestoria-abierta-sabado-madrid-2", title: "Gestoría abierta sábado" },
+  { slug: "asesoria-empresas-autonomos", title: "Asesoría Empresas y Autónomos" },
+  { slug: "declaracion-renta-mostoles", title: "Declaración Renta Móstoles" },
+  { slug: "gestoria-mostoles-transferencia-vehiculos", title: "Transferencia de Vehículos" },
+  { slug: "pago-modelo-620-madrid", title: "pago-modelo-620" },
+  { slug: "delitos-de-seguridad-vial-mostoles", title: "Delitos de Seguridad Vial" },
+  { slug: "seguros-mostoles", title: "Seguros" },
+  { slug: "abogados-mostoles", title: "Abogados" },
+  { slug: "abogados-herencias-mostoles", title: "Abogados Herencias" },
+  { slug: "abogados-penalistas-mostoles", title: "Abogados Penalistas" },
+  { slug: "abogados-de-familia-mostoles", title: "Abogados de Familia" },
+  { slug: "gestores-fincas-mostoles", title: "Gestores de fincas" },
+  { slug: "blog", title: "Blog" },
+  { slug: "contactar-asesoria-mostoles", title: "Contacto", contactDemo: true },
+  { slug: "politica-de-cookies", title: "Política de Cookies" },
+  { slug: "aviso-legal", title: "Aviso Legal" },
+  { slug: "politica-privacidad", title: "Política de privacidad" },
+  { slug: "gestoria-abierta-los-sabados-en-madrid", title: "Gestoría abierta los sábados" },
+  { slug: "603_634_685", title: "Informes oficiales DGT por Whatsapp" },
+  { slug: "916_130_029", title: "Solicitar presupuesto por teléfono" },
+];
+
 const services = [
   {
     title: "Cambios de titularidad en Móstoles",
@@ -115,7 +141,17 @@ const reviews = [
   },
 ];
 
-export default function Home() {
+type ModernizedPageProps = {
+  routeTitle?: string;
+  innerPage?: boolean;
+  contactDemo?: boolean;
+};
+
+export function ModernizedPage({
+  routeTitle = "Asesoría y gestoría en Móstoles",
+  innerPage = false,
+  contactDemo = false,
+}: ModernizedPageProps) {
   return (
     <>
       <header className="site-header">
@@ -138,6 +174,19 @@ export default function Home() {
       </header>
 
       <main>
+        {innerPage ? (
+          <section className="route-demo">
+            <div className="container route-demo-inner">
+              <p className="section-kicker">Página interior demo</p>
+              <h1>{routeTitle}</h1>
+              <p>
+                Ruta estática creada para evitar 404 en la modernización. El contenido disponible en el export local de
+                `/original` se conserva en esta maqueta visual, sin activar formularios ni backend.
+              </p>
+            </div>
+          </section>
+        ) : null}
+
         <section className="hero">
           <img src={asset("/assets/fondo-home-2025.jpg")} alt="" className="hero-bg" />
           <div className="hero-shade" />
@@ -246,8 +295,9 @@ export default function Home() {
               <p className="section-kicker">Contacto</p>
               <h2>Formulario visible como demo</h2>
               <p>
-                La web original enlaza a la página de contacto. En esta versión estática se muestra el componente visual
-                del formulario, deshabilitado para que el cliente vea cómo quedaría sin activar ningún envío.
+                {contactDemo
+                  ? "Esta página de contacto se conserva como demo estática. El formulario está visible para revisión, pero no envía datos."
+                  : "La web original enlaza a la página de contacto. En esta versión estática se muestra el componente visual del formulario, deshabilitado para que el cliente vea cómo quedaría sin activar ningún envío."}
               </p>
             </div>
             <form className="demo-form" aria-disabled="true">
@@ -301,4 +351,8 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+export default function Home() {
+  return <ModernizedPage />;
 }
