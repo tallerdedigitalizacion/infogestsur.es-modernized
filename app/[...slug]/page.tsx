@@ -2,14 +2,14 @@ import { ModernizedPage, routePages } from "../page";
 
 export function generateStaticParams() {
   if (process.env.NODE_ENV === "development") {
-    return routePages.flatMap((page) => [
-      { slug: [page.slug] },
-      { slug: [page.slug, "index.html"] },
-    ]);
+    return routePages.flatMap((page) => {
+      const parts = page.slug.split("/");
+      return [{ slug: parts }, { slug: [...parts, "index.html"] }];
+    });
   }
 
   return routePages.map((page) => ({
-    slug: [page.slug],
+    slug: page.slug.split("/"),
   }));
 }
 
